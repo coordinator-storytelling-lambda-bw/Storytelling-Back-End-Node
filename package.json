@@ -5,13 +5,11 @@
   "repository": "https://github.com/coordinator-storytelling-lambda-bw/Storytelling-Back-End-Node.git",
   "author": "Zealll <eriznis@gmail.com>",
   "license": "MIT",
-
   "scripts": {
     "test": "jest --watch --verbose",
     "server": "nodemon index.js",
     "start": "node index.js"
   },
-
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-session-knex": "^1.4.0",
