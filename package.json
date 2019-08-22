@@ -9,7 +9,7 @@
   "scripts": {
     "test": "jest --watch --verbose",
     "server": "nodemon index.js",
-    "start": "knex migrate:rollback && knex migrate:latest && knex seed:run && node index.js"
+    "start": "node index.js"
   },
 
   "dependencies": {
