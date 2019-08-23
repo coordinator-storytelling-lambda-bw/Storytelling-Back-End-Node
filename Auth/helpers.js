@@ -5,8 +5,16 @@ module.exports = {
     login
 }
 
-function register (user) {
-
+function register(body, type) {
+    if(type.toLowerCase() === 'coordinator') {
+        return db('coordinator')
+        .insert(body)
+        .then(id => id[0])
+    } else {
+        return db('donor')
+        .insert(body)
+        .then(id => id[0])
+    }
 }
 
 function login (username) {
@@ -28,3 +36,4 @@ function login (username) {
         }
     })
 }
+
