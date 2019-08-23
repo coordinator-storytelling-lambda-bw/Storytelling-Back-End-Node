@@ -9,7 +9,7 @@
     "test": "jest --watch --verbose",
     "server": "nodemon index.js",
     "start": "node index.js",
-    "heroku-postbuild": "npm install --production && knex migrate:latest"
+    "heroku-postbuild": "npm install --production && knex migrate:latest && knex seed:run"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
