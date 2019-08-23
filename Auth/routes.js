@@ -32,9 +32,9 @@ router.post('/login', (req, res) => {
         if(!user) {
             res.status(404).json({message: 'Can\'t find an User with the specified username'})
         } else {
-            if(brcrypt.compareSync(password, user.password)) {
-                const token = generateToken(user)
-                res.status(201).json({message: `Logged In! Your ID is ${user.id}`, token})
+            if(bcrypt.compareSync(password, user.password)) {
+               const token = generateToken(user)
+               res.status(201).json({message: `Logged In! Your ID is ${user.id}`, token})
             }
             
         }
