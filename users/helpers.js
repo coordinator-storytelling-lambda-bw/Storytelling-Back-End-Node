@@ -10,8 +10,9 @@ module.exports = {
 }
 
 function allCoordinators() {
-    console.log('hello')
+    console.log('hellp')
     return db('coordinator')
+    
 }
 
 function allDonors() {

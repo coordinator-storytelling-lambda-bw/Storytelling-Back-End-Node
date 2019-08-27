@@ -3,14 +3,13 @@ const router = express.Router()
 
 const {restricted} = require('../Auth/middleware.js')
 
-helpers = require('./helpers.js')
+const helpers = require('./helpers.js')
 
 // GET all Coordinators
 router.get('/coordinators', async (req, res) => {
     
     try {
         const cor = await helpers.allCoordinators()
-        console.log(cor,'cor')
         res.status(200).json(cor)
     } catch(err) {
         res.status(500).json({ message: 'Something went wrong when fetching Coordinators!'})
@@ -20,9 +19,9 @@ router.get('/coordinators', async (req, res) => {
 
 // GET all Donors
 router.get('/donors', async (req, res) => {
-    
     try {
         const don = await helpers.allDonors()
+        
         res.status(200).json(don)
     } catch(err) {
         res.status(500).json({ message: 'Something went wrong when fetching Donors!'})
