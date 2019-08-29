@@ -12,7 +12,7 @@ router.post('/register', async (req,res) => {
     const hash = bcrypt.hashSync(user.password, 4)
     user.password = hash
     
-    if(!user.firstName || !user.lastName || !user.email || !user.username || !user.password || !user.country || !user.type) {
+    if(user.firstName.length === 0 || !user.lastName.length === 0 || user.email.length === 0 || user.username.length === 0 || user.password.length === 0 || user.country.length === 0 || user.type.length === 0) {
         res.send("Please enter all the required fields!")
     } else {
         try {
