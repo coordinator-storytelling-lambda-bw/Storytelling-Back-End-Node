@@ -11,15 +11,19 @@ router.post('/register', async (req,res) => {
     let user = req.body
     const hash = bcrypt.hashSync(user.password, 4)
     user.password = hash
-    console.log('hello')
-
-    try {
-        const registered = await helpers.register(user, user.type)
-        
-        res.status(201).json(registered)
-    } catch (err) {
-        res.status(500).json({message: 'Something went wrong when registering user'})
+    
+    if(!user.firstName || !user.lastName || !user.email || !user.username || !user.password || !user.country || !user.type) {
+        res.send("Please enter all the required fields!")
+    } else {
+        try {
+            const registered = await helpers.register(user, user.type)
+            
+            res.status(201).json(registered)
+        } catch (err) {
+            res.status(500).json({message: 'Something went wrong when registering user'})
+        }
     }
+    
 })
 
 
