@@ -21,4 +21,4 @@ exports.seed = function(knex) {
     });
 };
 
-created at, title, country
+// created at, title, country
