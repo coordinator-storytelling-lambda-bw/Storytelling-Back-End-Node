@@ -20,11 +20,11 @@ function register(body, type) {
                     if(type.toLowerCase() === 'coordinator') {
                         return db('coordinator')
                         .insert(body)
-                        .then(id => `Welcome your ID is ${id[0]}`)
+                        .then(id => `Register Successful`)
                     } else {
                         return db('donor')
                         .insert(body)
-                        .then(id => `Welcome your ID is ${id[0]}`)
+                        .then(id => `Register Successful`)
                     }
                 } else {
                     return 'User Donor with that username already exists!'
