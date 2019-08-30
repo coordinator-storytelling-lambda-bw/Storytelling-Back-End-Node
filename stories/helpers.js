@@ -7,7 +7,8 @@ module.exports = {
     addStory,
     checkTitle,
     save,
-    getSaved
+    getSaved,
+    individual
 }
 
 function getStories() {
@@ -81,4 +82,10 @@ function getSaved(id) {
             return arr
         })
     })
+}
+
+function individual(id) {
+    return db('stories')
+    .where({id})
+    .first()
 }
