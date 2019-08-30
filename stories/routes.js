@@ -30,6 +30,21 @@ router.get('/user/stories', restricted, async (req, res) => {
     }
 })
 
+//GET individual Story
+router.get('/individual/story/:id', restricted, async (req, res) => {
+    try {
+        const story = await helpers.individual(req.params.id)
+
+        if(!story) {
+            res.status(404).json({message: `Story with an ID of ${req.params.id} couldn\'t be found`})
+        } else {
+            res.status(200).json(story)
+        }
+    } catch(err) {
+        res.status(500).json({message: 'Something went wrong when retreiving a story'})
+    }
+})
+
 //ADDS a story
 router.post('/add', restricted, async (req, res) => {
     const {subjectId} = req.decodedToken
