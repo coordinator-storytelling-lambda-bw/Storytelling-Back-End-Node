@@ -4,7 +4,10 @@ const db = require('../data/db.js')
 module.exports = {
     getStories,
     getUserStories,
-    addStory
+    addStory,
+    checkTitle,
+    save,
+    getSaved
 }
 
 function getStories() {
@@ -39,11 +42,43 @@ function getUserStories(id, type) {
     }
 }
 
+function checkTitle(title) {
+    console.log(title)
+    return db('stories')
+    .where({ title })
+    .first()
+}
+
 function addStory(body) {
     return db('stories')
     .insert(body)
     .then(id => {
         return db('stories')
         .where({user_id: body.user_id, type: body.type} )
+    })
+}
+
+function save(body) {
+    return db('save_story')
+    .insert(body)
+}
+
+function getSaved(id) {
+    return db('save_story')
+    .where({user_id: id})
+    .then(linkers => {
+        console.log('linkers', linkers)
+        return db('stories')
+        .then(stories => {
+            const arr = []
+            linkers.map(each => {
+                stories.map(story => {
+                    if(story.id === each.story_id){
+                        arr.push(story)
+                    }
+                })
+            })
+            return arr
+        })
     })
 }
