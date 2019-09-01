@@ -8,7 +8,9 @@ module.exports = {
     checkTitle,
     save,
     getSaved,
-    individual
+    individual,
+    deleted,
+    edit
 }
 
 function getStories() {
@@ -88,4 +90,27 @@ function individual(id) {
     return db('stories')
     .where({id})
     .first()
+}
+
+function deleted(id) {
+    return db('stories')
+    .where({ id })
+    .del()
+    .then(res => {
+        if(res) {
+            return db('stories')
+        }
+    })
+}
+
+function edit(id, body) {
+    return db('stories')
+    .where({ id })
+    .update(body)
+    .then(res => {
+        if(res){
+            return db('stories')
+            .where({ id })
+        }
+    })
 }
