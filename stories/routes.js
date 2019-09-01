@@ -116,6 +116,44 @@ router.get('/saved', restricted, async (req, res) => {
     }
 })
 
+//DELETE a story by it's ID
+router.delete('/delete/:id', restricted, async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const deleted = await helpers.deleted(id)
+        
+        if(!deleted) {
+            res.status(404).json({ message: `Story with an ID of ${id} couldn\'t be found` })
+        } else {
+            res.status(200).json(deleted)
+        }
+    } catch (err) {
+        res.status(500).json({ message: 'Something went wrong when deleting a Story!' })
+    }
+})
+
+//Edit a story
+router.put('/edit/:id', restricted, async (req, res) => {
+    const { id } = req.params
+    const { body } = req
+    if(body.story.length === 0 || body.country.length === 0 || body.title.length === 0) {
+        res.status(400).json({message: 'You can\'t have any empty inputs'})
+    } else {
+        try {
+            const edited = await helpers.edit(id, body)
+    
+            if(!edited) {
+                res.status(404).json({ message: `Story with an ID of ${id} couldn\'t be found`})
+            } else {
+                res.status(200).json(edited)
+            }
+        } catch (err) {
+            res.status(500).json({message: 'Something went wrong when editing a story!'})
+        }
+    }
+})
+
 
 
 module.exports = router

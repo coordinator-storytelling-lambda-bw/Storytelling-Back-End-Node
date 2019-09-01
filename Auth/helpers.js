@@ -31,7 +31,7 @@ function register(body, type) {
                 }
             })
         } else {
-            return 'User Coordinator with that ID already exists'
+            return 'User Coordinator with that username already exists'
         }
     })
     
